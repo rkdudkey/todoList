@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+</head>
+<style>
+    ul li.checked {
+        text-decoration: line-through;
+    }
+</style>
+
+<body>
+
+
+    <!--To Do List
+Let's create a simple to do application 
+
+Show an unordered list of to do's 
+Show an input to enter a new to do 
+Show a button to add a to  do. When the button is clicked: 
+The text from the input box is used to add a list item to the bottom of the list 
+The text from the input box is cleared out.
+When the user clicks on a list item, it is removed
+Extra Credit: - When a list item is clicked, cross it out, then remove it after 1 second.-->
+
+    <form action="">
+        <input id="list" type="text" />
+        <button id="btn" type="submit">Submit</button>
+    </form>
+
+    <!--Add todo list here-->
+    <div class="todoList">
+        <p class="warning"></p>
+        <ul id="addList"></ul>
+    </div>
+
+    <script>
+
+        let btn = document.querySelector('#btn');
+
+        let input = document.querySelector('#list');
+
+
+        //add click event
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            let warning = document.querySelector('.warning');
+
+            if (input.value === '') {
+                warning.innerHTML = "Please Enter your to do list";
+                warning.style.color = 'red';
+            } else if (input.value !== '') {
+                warning.innerHTML = "";
+
+                //get the value from the input
+                let list = input.value;
+
+                //create the li element
+                let li = document.createElement('li');
+                li.textContent = list;
+
+
+                //append the list
+                let ul = document.querySelector('#addList');
+                ul.appendChild(li);
+
+                //clicked to remove
+                ul.addEventListener('click', (e) => {
+                    let target = e.target;
+                    target.classList.add('checked');
+                    setTimeout(() => {
+                        target.innerHTML = " ";
+                        target.style.listStyle = "none";
+                    }, 1000)
+
+                })
+
+                //clear text from input
+                input.value = "";
+
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>
