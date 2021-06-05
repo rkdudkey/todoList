@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do List</title>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!--Add bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!--Add Animations-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
-<style>
-    ul li.checked {
-        text-decoration: line-through;
-    }
-</style>
 
 <body>
 
@@ -27,66 +30,28 @@ The text from the input box is cleared out.
 When the user clicks on a list item, it is removed
 Extra Credit: - When a list item is clicked, cross it out, then remove it after 1 second.-->
 
-    <form action="">
-        <input id="list" type="text" />
-        <button id="btn" type="submit">Submit</button>
-    </form>
 
-    <!--Add todo list here-->
-    <div class="todoList">
-        <p class="warning"></p>
-        <ul id="addList"></ul>
+    <div class="row mx-auto container-fluid ">
+            <div class="col-md-6 mx-auto col-12 content bg-info">
+                <h1 class ="text-white text-center text-uppercase mt-5">To do List</h1>
+                <form class="text-center mt-5" action="">
+                    <input id="list" type="text" />
+                    <button id="btn" class="btn btn-secondary " type="submit">Submit</button>
+                </form>
+            
+                <!--Add todo list here-->
+                <div class="todoList d-flex justify-content-center align-items-center flex-column mb-5">
+                    <p class="warning mx-auto"></p>
+                    <ul id="addList"></ul>
+                </div>
+            </div>  
+
     </div>
 
-    <script>
 
-        let btn = document.querySelector('#btn');
+   
 
-        let input = document.querySelector('#list');
-
-
-        //add click event
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            let warning = document.querySelector('.warning');
-
-            if (input.value === '') {
-                warning.innerHTML = "Please Enter your to do list";
-                warning.style.color = 'red';
-            } else if (input.value !== '') {
-                warning.innerHTML = "";
-
-                //get the value from the input
-                let list = input.value;
-
-                //create the li element
-                let li = document.createElement('li');
-                li.textContent = list;
-
-
-                //append the list
-                let ul = document.querySelector('#addList');
-                ul.appendChild(li);
-
-                //clicked to remove
-                ul.addEventListener('click', (e) => {
-                    let target = e.target;
-                    target.classList.add('checked');
-                    setTimeout(() => {
-                        target.innerHTML = " ";
-                        target.style.listStyle = "none";
-                    }, 1000)
-
-                })
-
-                //clear text from input
-                input.value = "";
-
-            }
-
-        });
-    </script>
+    <script src="script.js"></script>
 
 
 </body>
